@@ -5,6 +5,7 @@ import java.util.*;
  * novel, essay, poem 리스트 객체를 생성하여
  * 값을 저장하고, 출력하고, 검색 및 삭제하는 어플을 구현한 프로그램
  * 
+ * @author YeLim Min
  */
 public class BookStore4 {
 	Scanner scan = new Scanner(System.in);
@@ -15,12 +16,9 @@ public class BookStore4 {
 	
 	static int count = 0;
 	
-	static ArrayList<Book> novelList = new ArrayList<>();
-	static ArrayList<Book> EssayList = new ArrayList<>();
-	static ArrayList<Book> PoemList = new ArrayList<>();
 	static ArrayList<Book> bookList = new ArrayList<>();
 	
-	/** 메뉴 선택 메소드*/
+	/** 메뉴 선택을 위한 번호를 출력하는 메소드*/
 	public void menu() {	
 		System.out.println("-----BookStore App-----");
 		System.out.println("1. 책 정보 등록");
@@ -34,7 +32,7 @@ public class BookStore4 {
 		
 	}
 	
-	/** 초기 메뉴 1번, 책 정보 등록 선택 시 나타나는 서브메뉴 메소드 */
+	/** 초기 메뉴 1번, 책 정보 등록 선택 시 나타나는 서브메뉴 번호를 출력하는 메소드 */
 	public void menu_1() {		
 		System.out.println("--------등록 메뉴---------");
 		System.out.println("1. 소설 정보 등록");
@@ -46,7 +44,12 @@ public class BookStore4 {
 		System.out.println("-----------------------");
 	}
 	
-	/** Novel 정보를 입력받아 등록하여 ArrayList에 저장하는 메소드 */
+	/** 
+	 * Novel 정보를 입력받아 등록하여 ArrayList에 저장하는 메소드 
+	 * 
+	 * @throws WrongIdException 
+	 * 			소설 장르의 id는 100번대로, 100번대 이외의 id 입력 시 사용자 정의 예외 발생
+	 */
 	public void registerNovel() throws WrongIdException {	
 		
 		System.out.println("제목 입력: ");
@@ -76,7 +79,6 @@ public class BookStore4 {
 		System.out.println("등록한 정보를 저장할까요? [1. 예   2. 아니오]");
 		int save = scan.nextInt();
 		if (save == 1) {
-			novelList.add(n);
 			bookList.add(n);
 			count++;
 			System.out.println("등록 완료! "+count+"개 저장");
@@ -87,7 +89,12 @@ public class BookStore4 {
 		System.out.println();
 	}
 	
-	/** Essay 정보를 입력받아 등록하여 ArrayList에 저장하는 메소드 */
+	/** 
+	 * Essay 정보를 입력받아 등록하여 ArrayList에 저장하는 메소드 
+	 * 
+	 * @throws WrongIdException 
+	 * 			에세이 장르의 id는 200번대로, 200번대 이외의 id 입력 시 사용자 정의 예외 발생
+	 */
 	public void registerEssay() throws WrongIdException {	
 		
 		System.out.println("제목 입력: ");
@@ -117,7 +124,6 @@ public class BookStore4 {
 		System.out.println("등록한 정보를 저장할까요? [1. 예   2. 아니오]");
 		int save = scan.nextInt();
 		if (save == 1) {
-			EssayList.add(e);
 			bookList.add(e);
 			count++;
 			System.out.println("등록 완료! "+count+"개 저장");
@@ -128,7 +134,12 @@ public class BookStore4 {
 		System.out.println();
 	}
 	
-	/** Poem 정보를 입력받아 등록하여 ArrayList에 저장하는 메소드 */
+	/** 
+	 * Poem 정보를 입력받아 등록하여 ArrayList에 저장하는 메소드 
+	 * 
+	 * @throws WrongIdException 
+	 *			시집 장르의 id는 300번대로, 300번대 이외의 id 입력 시 사용자 정의 예외 발생
+	 */
 	public void registerPoem() throws WrongIdException {	
 		
 		System.out.println("제목 입력: ");
@@ -158,7 +169,6 @@ public class BookStore4 {
 		System.out.println("등록한 정보를 저장할까요? [1. 예   2. 아니오]");
 		int save = scan.nextInt();
 		if (save == 1) {
-			PoemList.add(poem);
 			bookList.add(poem);
 			count++;
 			System.out.println("등록 완료! "+count+"개 저장");
@@ -169,15 +179,11 @@ public class BookStore4 {
 		System.out.println();
 	}
 	
-//	public void saveBook() {
-//		bookList.add(n);
-//		bookList.add(e);
-//		bookList.add(poem);
-//	}
-//	
 	
-	/** 2번 책 정보 출력 선택 시 모든 정보가 출력되는 메소드
-	 * instanceof를 이용하여, novel, essay, poem 각 정보의 타이틀을 붙여 출력 */
+	/** 
+	 * 초기 메뉴 2번, 책 정보 출력 선택 시 모든 정보를 출력하는 메소드
+	 * instanceof를 이용하여, novel, essay, poem 각 정보의 타이틀을 붙여 출력 
+	 */
 	public void printAll() {	
 		for(Book b:bookList) {
 			if(b instanceof Novel) {
@@ -193,41 +199,8 @@ public class BookStore4 {
 				System.out.println(((Poem)b).printInfo());
 			}
 		}
-		
-		
-//		if (n instanceof Novel) {
-//			System.out.println("*** 소설 정보 *********");
-//			for(Book bn: bookList) {
-//				System.out.println(((Novel)bn).printInfo());
-//			}
-//		}
-//		else if(e instanceof Essay) {
-//			System.out.println("*** 에세이 정보 **********");
-//			for(Book be: bookList) {
-//				System.out.println(((Essay)be).printInfo());
-//			}
-//		}
-//		else if(poem instanceof Poem) 
-//			System.out.println("*** 시집 정보 **********");
-//			for(Book bp: bookList) {
-//				System.out.println(((Poem)bp).printInfo());
-//			}
-//		}
-//			System.out.println(novelList.size());
-//			System.out.println(bookList.size());
-			
-//		Iterator<Book> itn = bookList.iterator();
-//			
-//		while (itn.hasNext()) {
-//			Book bn = itn.next();
-//			System.out.println(bn.printInfo());
-//		}
-//		for(Book b: bookList) {
-//			System.out.println(((Novel)b).printInfo());
-//		}
-//		
 	}
-		
+
 	
 	/** 초기 메뉴 3번, 책 정보 검색 선택 시 책 제목을 검색하여 정보를 출력하는 메소드 */	
 	public void search() {
@@ -238,37 +211,60 @@ public class BookStore4 {
 
 		for(int i=0; i<bookList.size(); i++) {
 			if (sc.equals(bookList.get(i).getTitle())){
-				if (n instanceof Novel) {
+				if (bookList.get(i).getId() >= 100 && bookList.get(i).getId() < 200) {
 					System.out.println("*** 소설 정보 *********");
+					System.out.println(bookList.get(i).printInfo());
 				}
-				else if(e instanceof Essay) {
+				else if(bookList.get(i).getId() >= 200 && bookList.get(i).getId() < 300) {
 					System.out.println("*** 에세이 정보 **********");
+					System.out.println(bookList.get(i).printInfo());
 				}
-				else if(poem instanceof Poem) {
+				else if(bookList.get(i).getId() >= 300 && bookList.get(i).getId() < 400) {
 					System.out.println("*** 시집 정보 **********");
+					System.out.println(bookList.get(i).printInfo());
 				}
-				System.out.println(bookList.get(i).printInfo());
-				num = 1;
 				
-			}
-			if (num == 0) {
-				System.out.println(sc+" 제목의 책은 존재하지 않습니다.");
+				num = 1;
 			}
 		}
+		if (num == 0) {
+			System.out.println(sc+" 제목의 책은 존재하지 않습니다.");
+		}
 			
+	}
+	
+	
+	/** 초기 메뉴 4번, 책 정보 삭제 선택 시 책 제목을 입력 받아 해당 정보를 삭제하는 메소드 */
+	public void delete() {
+		System.out.println("삭제할 책의 제목을 입력하세요: ");
+		scan.nextLine();
+		
+		String del = scan.nextLine();
+		int num = 0;
+		
+		for(int i=0; i<bookList.size(); i++) {
+			if(del.equals(bookList.get(i).getTitle())) {
+				bookList.remove(i);
+				System.out.println(del+" 제목의 책 정보를 삭제하였습니다.");
+				num = 1;
+			}
+		}
+		if (num==0) {
+			System.out.println(del+" 제목의 책은 존재하지 않습니다.");
+		}
+		
 	}
 
 	
 	
-	/** 메인 메소드
-	 * BookStore 객체를 생성하여, 메소드를 호출하여 정보를 출력한다.
-	 * switch-case문을 활용하여 메뉴 번호에 따른 메소드를 호출하여 실행한다. */
+	/** 
+	 * 메인 메소드
+	 * BookStore 객체를 생성하여, switch-case문을 활용하여 각 메뉴 번호에 따른 메소드를 호출하여 실행한다.
+	 */
 	public static void main(String[] args) {
 		
 		while(true) {
 			BookStore4 bs = new BookStore4();
-			
-			//ArrayList<Novel> novelList = new ArrayList<>();
 			
 			bs.menu();
 			int num = bs.scan.nextInt();
@@ -337,7 +333,7 @@ public class BookStore4 {
 				break;
 				
 			case 4:
-				
+				bs.delete();
 				break;
 		
 			}
