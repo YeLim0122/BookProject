@@ -4,7 +4,10 @@ import java.util.*;
 /**
  * novel, essay, poem 리스트 객체를 생성하여
  * 값을 저장하고, 출력하고, 검색 및 삭제하는 어플을 구현한 프로그램
- * 
+ * 메뉴 선택 메소드인 menu(), 1번 메뉴 선택 시 나타나는 서브메뉴 메소드인 menu_1(),
+ * 각 책의 정보를 입력받아 리스트에 저장하는 registerNovel(), registerEssay(), registerPoem() 메소드,
+ * 정보 출력 선택 시 모든 정보를 출력하는 printAll()메소드, 제목을 검색하여 정보를 출력하는 search()메소드,
+ * 제목을 입력받아 해당 책의 정보를 삭제하는 delete()메소드와 main()메소드로 이루어져 있다.
  */
 public class BookStore3 {
 	Scanner scan = new Scanner(System.in);
