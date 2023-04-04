@@ -31,13 +31,6 @@ abstract public class Book {
 		return author;
 	}
 	
-	public void input() {
-		System.out.println("제목 입력: ");
-		title = scan.nextLine();
-		System.out.println("저자 입력: ");
-		author = scan.nextLine();
-	}
-	
 	public String printInfo() {
 		String info = "제목: "+title+"\n";
 				info += "저자: "+author+"\n";
